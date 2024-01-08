@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 const tasks = require("./routes/tasks");
-
 const connectDB = require("./db/connect");
+require("dotenv").config();
 
 // MIDDLEWARE
 app.use(express.json()); // if we don't use this, we don't have date on the body.
@@ -21,7 +21,7 @@ const port = 3000;
 // This function helps when we connect DB first and then we spin up the server.
 const start = async () => {
   try {
-    await connectDB();
+    await connectDB(process.env.MONGO_URL);
 
     app.listen(port, () => {
       console.log(`Server is listening on port ${port}...`);
