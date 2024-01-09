@@ -17,7 +17,7 @@ app.use(notFound);
 app.use(errorHandler);
 
 // LOCALHOST PORT SETTING
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // This function helps when we connect DB first and then we spin up the server.
 const start = async () => {
