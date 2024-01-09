@@ -4,6 +4,7 @@ const tasks = require("./routes/tasks");
 const connectDB = require("./db/connect");
 require("dotenv").config();
 const notFound = require("./middleware/not-found");
+const errorHandler = require("./middleware/error-handler");
 
 // MIDDLEWARE
 app.use(express.json()); // if we don't use this, we don't have date on the body.
@@ -12,6 +13,8 @@ app.use(express.static("./public"));
 // ROUTE
 app.use("/api/v1/tasks", tasks);
 app.use(notFound);
+// error handler
+app.use(errorHandler);
 
 // LOCALHOST PORT SETTING
 const port = 3000;
