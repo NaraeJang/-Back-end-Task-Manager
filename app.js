@@ -3,17 +3,15 @@ const app = express();
 const tasks = require("./routes/tasks");
 const connectDB = require("./db/connect");
 require("dotenv").config();
+const notFound = require("./middleware/not-found");
 
 // MIDDLEWARE
 app.use(express.json()); // if we don't use this, we don't have date on the body.
-
 app.use(express.static("./public"));
 
-app.get("/", (req, res) => {
-  res.status(200).send("<h1>Hello world</h1>");
-});
-
+// ROUTE
 app.use("/api/v1/tasks", tasks);
+app.use(notFound);
 
 // LOCALHOST PORT SETTING
 const port = 3000;
